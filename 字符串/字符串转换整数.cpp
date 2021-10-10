@@ -5,10 +5,10 @@ class Solution {
 public:
 	int myAtoi(string s) {
 		if (!s.size())return 0;
-		//丢弃前导空格
+		//涓㈠純鍓嶅绌烘牸
 		int i = 0;
 		while (s[i] == 32)i++;
-		int flag = 1;//正数还是负数
+		int flag = 1;//姝ｆ暟杩樻槸璐熸暟
 		if (s[i] == '+')
 		{
 			flag = 1;
@@ -22,24 +22,8 @@ public:
 		int ans=0;
 		while (isdigit(s[i]))
 		{
-			if (flag&&ans >= INT32_MAX / 10)
-			{
-				if(ans==INT32_MAX/10&&s[i]-'0'>7)
-				{
-					return INT32_MAX;
-				}
-				if(ans>INT32_MAX/10)
-					return INT32_MAX;
-			}
-			if (!flag&&ans >= INT32_MAX / 10)
-			{
-				if (ans == INT32_MAX / 10 && s[i] - '0' > 8)
-				{
-					return INT32_MIN;
-				}
-				if (ans > INT32_MAX / 10)
-					return INT32_MIN;
-			}
+			if (ans > INT32_MAX / 10 || (ans == INT32_MAX / 10 && s[i] - '0' > 7))
+				return flag ? INT32_MAX : INT32_MIN;
 			ans = ans * 10 + (s[i] - '0');
 			i++;
 			
