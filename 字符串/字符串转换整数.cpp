@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 
+
 class Solution {
 public:
 	int myAtoi(string s) {
@@ -22,27 +23,10 @@ public:
 		int ans=0;
 		while (isdigit(s[i]))
 		{
-			if (flag&&ans >= INT32_MAX / 10)
-			{
-				if(ans==INT32_MAX/10&&s[i]-'0'>7)
-				{
-					return INT32_MAX;
-				}
-				if(ans>INT32_MAX/10)
-					return INT32_MAX;
-			}
-			if (!flag&&ans >= INT32_MAX / 10)
-			{
-				if (ans == INT32_MAX / 10 && s[i] - '0' > 8)
-				{
-					return INT32_MIN;
-				}
-				if (ans > INT32_MAX / 10)
-					return INT32_MIN;
-			}
+			if (ans > INT32_MAX / 10 || (ans == INT32_MAX / 10 && s[i] - '0' > 7))
+				return flag ? INT32_MAX : INT32_MIN;
 			ans = ans * 10 + (s[i] - '0');
 			i++;
-			
 		}
 		return flag?ans:-ans;
 	}
