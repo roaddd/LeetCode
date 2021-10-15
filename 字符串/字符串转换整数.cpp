@@ -6,10 +6,10 @@ class Solution {
 public:
 	int myAtoi(string s) {
 		if (!s.size())return 0;
-		//丢弃前导空格
+		//涓㈠純鍓嶅绌烘牸
 		int i = 0;
 		while (s[i] == 32)i++;
-		int flag = 1;//正数还是负数
+		int flag = 1;//姝ｆ暟杩樻槸璐熸暟
 		if (s[i] == '+')
 		{
 			flag = 1;
